@@ -53,7 +53,6 @@ int main(int argc, char* argv[])
 		}
 		else
 		{
-			int abua=0;
 			fscanf(fp,"%d",&abua);
 			fscanf(fp,"%d",&ava);
 			if(!ava)
