@@ -7,7 +7,7 @@
 #define dirname "downloads"
 #define version "1.0.1"
 char api_key[300];
-int max=6;//maximum of attempts before timeout
+int max=6;//maximum attempts before timeout
 #include "scanner/scanner.cpp"
 void update_index(char*,char*);
 void check_index(char*,char*);
