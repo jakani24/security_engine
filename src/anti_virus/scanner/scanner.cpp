@@ -242,10 +242,15 @@ void upload_file(char*folder,char*file)
 			}
 		}
 	}
-	if(error && !answer)
+	if(error && !answer && iterator)
 	{
 		sprintf(data,"WARNING: the file could not be scanned due to internal errors");
 		MessageBox(NULL,data,"WARNING",MB_OK|MB_ICONWARNING|MB_SYSTEMMODAL);
+	}
+	else if(iterator<=0)
+	{
+		sprintf(data,"WARNING: the file could not be scanned due to connection timeout; you can see the results by yourself via %s on VT",scanid);
+		MessageBox(NULL,data,"WARNING",MB_OK|MB_ICONWARNING|MB_SYSTEMMODAL);		
 	}
 }
 #endif
