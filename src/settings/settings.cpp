@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <conio.h>
  
-
+#include "module_settings.cpp"
 int main()
 {
 	int abua=0;
@@ -27,7 +27,7 @@ int main()
 			printf("Module id\t\tModule name\t\tStatus\n");
 			printf("[0]\t\t\tAnti bad usb\t\t%s\n",abua ? "ONLINE" : "OFFLINE");
 			printf("[1]\t\t\tAnti virus\t\t%s\n",ava ? "ONLINE" : "OFFLINE");
-			printf("\n\nTo change setting press module number on your keyboard\nPress x to exit; Press s to start all services\nChanges will be applied on next reboot\n");
+			printf("\n\nTo change setting press module number on your keyboard\nPress x to exit; Press s to start all services; Press z for module specific settings\nChanges will be applied on next reboot\n");
 			input=getch();
 			switch(input)
 			{
@@ -57,7 +57,10 @@ int main()
 				break;
 				case 'x':
 					exit(0);
-					
+				break;
+				case 'z':
+					//specific settings
+					module_settings();
 				break;
 				case 's':
 					printf("starting\n");
