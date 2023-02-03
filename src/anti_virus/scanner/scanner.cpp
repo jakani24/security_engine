@@ -247,7 +247,7 @@ void upload_file(char*folder,char*file)
 		sprintf(data,"WARNING: the file could not be scanned due to internal errors");
 		MessageBox(NULL,data,"WARNING",MB_OK|MB_ICONWARNING|MB_SYSTEMMODAL);
 	}
-	else if(iterator<=0)
+	else if(iterator<=0 && !answer)
 	{
 		sprintf(data,"WARNING: the file could not be scanned due to connection timeout; you can see the results by yourself via %s on VT",scanid);
 		MessageBox(NULL,data,"WARNING",MB_OK|MB_ICONWARNING|MB_SYSTEMMODAL);		

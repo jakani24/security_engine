@@ -16,6 +16,10 @@ int main(int argc, char* argv[])
 {
 	if(argc>=2 && strcmp(argv[1],"--scan")==0)
 	{
+		if(argc>=4 && strcmp(argv[3],"--level")==0)
+		{
+			max=atoi(argv[4]);
+		}
 		scan_file("",argv[2]);
 	}
 	else
