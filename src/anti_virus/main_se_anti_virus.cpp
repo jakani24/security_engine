@@ -7,6 +7,7 @@
 #define dirname "downloads"
 #define version "1.0.1"
 char api_key[300];
+int max=6;//maximum of attempts before timeout
 #include "scanner/scanner.cpp"
 void update_index(char*,char*);
 void check_index(char*,char*);
@@ -31,6 +32,15 @@ int main(int argc, char* argv[])
 		else
 		{
 			fscanf(fp,"%295s",&api_key);
+			fclose(fp);
+		}
+		if((fp=fopen("c:\\ProgramData\\jakach\\se\\max.jdbf","r"))==0)
+		{
+			//file not found, max=6; 
+		}
+		else
+		{
+			fscanf(fp,"%d",&max);
 			fclose(fp);
 		}
 		if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","r"))==0)
@@ -66,13 +76,16 @@ int main(int argc, char* argv[])
 				{
 					fgets(folderpath,295,fp);
 					fgets(foldername,295,fp);
-					folderpath[strlen(folderpath)-1]='\0';
-					foldername[strlen(foldername)-1]='\0';
-					printf("Checking for new files on %s\n",folderpath);
-					check_index(folderpath,foldername);
-					printf("updating index\n");
-					update_index(folderpath,foldername);
-					printf("timeout\n");				
+					if(!feof(fp))
+					{
+						folderpath[strlen(folderpath)-1]='\0';
+						foldername[strlen(foldername)-1]='\0';
+						printf("Checking for new files on %s\n",folderpath);
+						check_index(folderpath,foldername);
+						printf("updating index\n");
+						update_index(folderpath,foldername);
+						printf("timeout\n");
+					}				
 				}
 				rewind(fp);
 			}

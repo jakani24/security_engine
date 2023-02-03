@@ -108,7 +108,7 @@ void upload_file(char*folder,char*file)
 	char scanid[300];
 	int wt_secure=0;
 	int error=0;
-	int iterator=5;
+	int iterator=max;
 	bool scan=true;
 	bool answer=false;
 	FILE*fp;
