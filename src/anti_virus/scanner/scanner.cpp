@@ -18,25 +18,17 @@ void scan_file(char*folder,char*file)//scan with hash
 	system(cmd);
 	//calculated hash of file
 	if((fp=fopen("c:\\programdata\\jakach\\se\\hash.jdbf","r"))==0)
-	{
-		//error
 		error=1;
-	}
 	else
 	{
 		fgets(hash,295,fp); //first line with filename etc
 		fgets(hash,295,fp); //second  line with hash
 		hash[strlen(hash)-1]='\0';
 		fclose(fp);
-		//check on VT
 		sprintf(cmd,"curl --request GET --url \"https://www.virustotal.com/vtapi/v2/file/report?apikey=%s&resource=%s\" > c:\\programdata\\jakach\\se\\out.jdbf",api_key,hash);
-		//printf("%s\n",cmd);
 		system(cmd);
-		//printf("%s\n",cmd);
 		if((fp=fopen("c:\\programdata\\jakach\\se\\out.jdbf","r"))==0)
-		{
 			error=2;
-		}
 		else
 		{
 			fscanf(fp,"%295s",&data);
@@ -71,7 +63,6 @@ void scan_file(char*folder,char*file)//scan with hash
 				detected[strlen(detected)-1]='\0';//raw number
 				if(wt_secure>4995)
 					wt_scan++;
-			//	printf("%s::testtesttesttest::%s::%d\n",detected,total,wt_secure);
 				if(atoi(detected)!=0)
 				{
 					sprintf(data,"WARNING: The scanned file %s%s was detected by %d out of %d engines. Should the file be removed?",folder,file,atoi(detected),atoi(total));
@@ -116,12 +107,9 @@ void upload_file(char*folder,char*file)
 	//upload
 	sprintf(cmd,"curl --request POST --url \"https://www.virustotal.com/vtapi/v2/file/scan\" --form \"apikey=%s\" --form \"file=@%s%s\" > c:\\programdata\\jakach\\se\\out.jdbf",api_key,folder,file);
 	system(cmd);
-	//printf("%s\n",cmd);
 	//check for scanid
 	if((fp=fopen("c:\\programdata\\jakach\\se\\out.jdbf","r"))==0)
-	{
 		error=1;
-	}
 	else
 	{
 		wt_secure=0;
@@ -142,7 +130,6 @@ void upload_file(char*folder,char*file)
 		scanid[strlen(scanid)-1]='\0';
 		printf("resource:%s\n",scanid);
 		//weve got the resource id now wait for analysis
-	
 		//download (we've already checked if the file exist so delay some time because scans tend to be very time intensive
 		while(iterator>=0 && !answer)
 		{
@@ -151,11 +138,8 @@ void upload_file(char*folder,char*file)
 			//attempt to download
 			sprintf(cmd,"curl --request GET --url \"https://www.virustotal.com/vtapi/v2/file/report?apikey=%s&resource=%s\" > c:\\programdata\\jakach\\se\\out.jdbf",api_key,scanid);
 			system(cmd);
-			//printf("%s\n",cmd);
 			if((fp=fopen("c:\\programdata\\jakach\\se\\out.jdbf","r"))==0)
-			{
 				error=3;
-			}
 			else
 			{
 				scan=false;
