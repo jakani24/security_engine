@@ -160,7 +160,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","r"))==0)
 	{
 		//file not found, enable system 
-		system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\padlock.exe");
+		system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\github\\security_engine\\src\\anti_bad_usb\\padlock.exe");
 	}
 	else
 	{
@@ -169,7 +169,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		if(!abua)
 			exit(0);
 		else
-			system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\padlock.exe");
+			system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\github\\security_engine\\src\\anti_bad_usb\\padlock.exe");
 		fclose(fp);			
 	}
 	if((fp=fopen("c:\\ProgramData\\jakach\\se\\excluded.jdbf","r"))==0)

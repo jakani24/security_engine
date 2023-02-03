@@ -5,8 +5,8 @@
 #include <windows.h>
 #define dir "c:\\users\\janis\\downloads\\"
 #define dirname "downloads"
-#define api_key "247bac24a9299e18fbaeff2d12767a6fdc3d090255d6bf8561acc3a76a87a17b"
 #define version "1.0.1"
+char api_key[300];
 #include "scanner/scanner.cpp"
 void update_index(char*,char*);
 void check_index(char*,char*);
@@ -23,6 +23,16 @@ int main(int argc, char* argv[])
 	    int ava,abua,folders;
 	    char folderpath[300];
 	    char foldername[300];
+	    if((fp=fopen("c:\\programdata\\jakach\\se\\api.jdbf","r"))==0)
+	    {
+	    	MessageBox(NULL,"Fatale error; could not read api key;","ERROR",MB_OK);
+	    	exit(0);
+		}
+		else
+		{
+			fscanf(fp,"%295s",&api_key);
+			fclose(fp);
+		}
 		if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","r"))==0)
 		{
 			//file not found, enable system 
