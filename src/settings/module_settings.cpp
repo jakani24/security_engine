@@ -24,6 +24,7 @@ void module_settings()
 void av_settings()
 {
 	char in;
+	int max;
 	char id[300];
 	FILE*fp;
 	printf("ID\t\t\tname\n");
@@ -64,12 +65,12 @@ void av_settings()
 		break;
 		case '2':
 			printf("Please enter the maximum of attempts before timeout\n");
-			scanf("%d",&in);
+			scanf("%d",&max);
 			if((fp=fopen("c:\\programdata\\jakach\\se\\max.jdbf","w"))==0)
 				printf("FATALE ERROR\n");
 			else
 			{
-				fprintf(fp,"%d",in);
+				fprintf(fp,"%d",max);
 				fclose(fp);
 				printf("done\n");
 			}			

@@ -135,7 +135,7 @@ void update_index(char*folder,char*fname)
 void check_index(char*folder,char*fname)
 {
 	FILE*fp;
-	bool scan=true;
+	bool scan;
 	char path[300];
 	sprintf(path,"c:\\ProgramData\\jakach\\se\\folders\\%s.jdbf",fname);
 	if((fp=fopen(path,"r"))==0)
@@ -149,7 +149,6 @@ void check_index(char*folder,char*fname)
 		  struct dirent *ep;
 		  char a[300];
 		  char buf[300];
-		  char cmd[500];
 		  int wt_secure=0;
 		  bool wt_scan=true;
 		  dp = opendir (folder);

@@ -7,7 +7,7 @@ int main()
 {
 	int abua=0;
 	int ava=0;
-	int input=0;
+	int input;
 	FILE*fp;
 	while(true)
 	{

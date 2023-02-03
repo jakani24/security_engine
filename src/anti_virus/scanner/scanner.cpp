@@ -9,8 +9,8 @@ void scan_file(char*folder,char*file)//scan with hash
 	char data[300];
 	char total[50];
 	char detected[50];
-	int wt_secure=0;
-	int wt_scan=0;
+	int wt_secure;
+	int wt_scan;
 	int error=0;
 	FILE*fp;
 	//check if file allready exists in vt database
@@ -49,6 +49,7 @@ void scan_file(char*folder,char*file)//scan with hash
 			else
 			{
 				wt_secure=0;
+				wt_scan=0;
 				rewind(fp);
 				while(!strstr(total,"total\"")&&wt_secure<=5000)
 				{
@@ -101,12 +102,11 @@ void scan_file(char*folder,char*file)//scan with hash
 void upload_file(char*folder,char*file)
 {
 	char cmd[300];
-	char hash[300];
 	char data[300];
 	char total[50];
 	char detected[50];
 	char scanid[300];
-	int wt_secure=0;
+	int wt_secure;
 	int error=0;
 	int iterator=max;
 	bool scan=true;
