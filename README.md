@@ -5,7 +5,7 @@ The security engine is an approach to create as many modules as possible to redu
 (sorry I'm not good in English writing)
 
 !important!
-if you want to use se on your machine be shure to compile it with your paths (eg path for padlock and so on)
+if you want to use se on your machine be shure to compile it with your paths (eg path for padlock (btw. download padlock <a href="https://github.com/takuyakanbr/padlock">here</a>) and so on)
 else it won't work
 
 codiga.io score follows:
