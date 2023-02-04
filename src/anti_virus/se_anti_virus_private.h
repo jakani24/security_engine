@@ -5,19 +5,19 @@
 #define SE_ANTI_VIRUS_PRIVATE_H
 
 /* VERSION DEFINITIONS */
-#define VER_STRING	"1.0.1.645"
+#define VER_STRING	"1.0.1.652"
 #define VER_MAJOR	1
 #define VER_MINOR	0
 #define VER_RELEASE	1
-#define VER_BUILD	645
+#define VER_BUILD	652
 #define COMPANY_NAME	"Jakach"
-#define FILE_VERSION	"1.0.1.645"
+#define FILE_VERSION	"1.0.1.652"
 #define FILE_DESCRIPTION	"jakach security engine"
 #define INTERNAL_NAME	"se"
 #define LEGAL_COPYRIGHT	"Jakach"
 #define LEGAL_TRADEMARKS	"Jakach"
 #define ORIGINAL_FILENAME	"main.cpp"
 #define PRODUCT_NAME	"se av engine"
-#define PRODUCT_VERSION	"1.0.1.645"
+#define PRODUCT_VERSION	"1.0.1.652"
 
 #endif /*SE_ANTI_VIRUS_PRIVATE_H*/

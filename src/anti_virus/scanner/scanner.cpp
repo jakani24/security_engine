@@ -235,6 +235,13 @@ void upload_file(char*folder,char*file)
 	{
 		sprintf(data,"WARNING: the file could not be scanned due to connection timeout; you can see the results by yourself via %s on VT",scanid);
 		MessageBox(NULL,data,"WARNING",MB_OK|MB_ICONWARNING|MB_SYSTEMMODAL);		
+		HGLOBAL glob = GlobalAlloc(GMEM_FIXED,32);
+		memcpy(glob,scanid,strlen(scanid));
+		
+		OpenClipboard(GetDesktopWindow());
+		EmptyClipboard();
+		SetClipboardData(CF_TEXT,glob);
+		CloseClipboard();
 	}
 }
 #endif
