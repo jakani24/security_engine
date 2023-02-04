@@ -81,8 +81,10 @@ void usb_settings()
 {
 	char in;
 	char id[300];
+	FILE*fp;
 	printf("ID\t\t\tname\n");
 	printf("[0]\t\t\tAdd excluded device\n");
+	printf("[1]\t\t\tAdd path to padlock.exe\n");
 	in=getch();
 	switch(in)
 	{
@@ -100,6 +102,19 @@ void usb_settings()
 					fclose(fp);
 					printf("done\n");
 				}
+			}
+		break;
+		case '1':
+			fflush(stdin);
+			printf("Please enter the path to padlock.exe\n");
+			fgets(id,295,stdin);
+			id[strlen(id)-1]='\0';
+			if((fp=fopen("c:\\programdata\\jakach\\se\\padlock.path","w"))==0)
+				MessageBox(NULL,"ERROR: file creation permission denied: se\\padlock.path","ERROR",MB_OK|MB_ICONERROR);
+			else
+			{
+				fprintf(fp,"%s",id);
+				fclose(fp);
 			}
 		break;
 	}

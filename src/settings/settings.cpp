@@ -63,11 +63,20 @@ int main()
 					module_settings();
 				break;
 				case 's':
+					char buf[300];
 					printf("starting\n");
 					system("taskkill /f /im padlock.exe");
 					system("taskkill /f /im usb.exe");
 					system("taskkill /f /im se_anti_virus.exe");
-					system("\"C:\\Users\\janis\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\start_av.bat\"");
+					if((fp=fopen("c:\\programdata\\jakach\\se\\autorun.path","r"))==0)
+						MessageBox(NULL,"ERROR: file reading permission denied: se\\autorun.path","ERROR",MB_OK|MB_ICONERROR);
+					else
+					{
+						//fflush(stdin);
+						fgets(buf,295,fp);
+						fclose(fp);
+					}
+					system(buf);
 					printf("done");
 				break;
 			}

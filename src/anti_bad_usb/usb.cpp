@@ -20,6 +20,7 @@
 #define size_excluded 300
 #define version "1.0.0"
 char excluded [300][size_excluded]; //list of excluded devices
+char padpath[300];
 LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
 {
     switch (uint)
@@ -132,6 +133,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
     HWND hWnd = NULL;
     WNDCLASSEX wx;
+    char buf[300];
     ZeroMemory(&wx, sizeof(wx));
 
     wx.cbSize = sizeof(WNDCLASSEX);
@@ -157,10 +159,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         throw std::runtime_error("Could not create message window!");
     }
     FILE*fp;
+    if((fp=fopen("c:\\programdata\\jakach\\se\\padlock.path","r"))==0)
+    	MessageBox(NULL,"ERROR: Could not find path for padlock.exe (file not found: se\\padlock.path)","ERROR",MB_OK|MB_ICONERROR);
+    	
+    else
+    {
+    	fgets(buf,295,fp);
+    	//buf[strlen(buf)-1]='\0';
+    	sprintf(padpath,"start %s",buf);
+    	fclose(fp);
+	}
 	if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","r"))==0)
 	{
 		//file not found, enable system 
-		system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\github\\security_engine\\src\\anti_bad_usb\\padlock.exe");
+		system(padpath);
 	}
 	else
 	{
@@ -169,7 +181,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		if(!abua)
 			exit(0);
 		else
-			system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\github\\security_engine\\src\\anti_bad_usb\\padlock.exe");
+			system(padpath);
 		fclose(fp);			
 	}
 	if((fp=fopen("c:\\ProgramData\\jakach\\se\\excluded.jdbf","r"))==0)
