@@ -106,11 +106,13 @@ void update_index(char*folder,char*fname)
 {
 	FILE*fp;
 	char path[300];
+	logger::log(1,logpath,2,"Updating folder: ",folder);
 	sprintf(path,"c:\\ProgramData\\jakach\\se\\folders\\%s.jdbf",fname);
 	if((fp=fopen(path,"w"))==0)
 	{
 		MessageBox(NULL,"[Jakach_security_engine] FATALE: couldn't make index","ERROR",MB_OK);
 		printf("FATALE ERROR\n");
+		logger::log(2,logpath,2,"Could not create index: ",path);
 	}
 	else
 	{
@@ -130,7 +132,10 @@ void update_index(char*folder,char*fname)
 		      (void) closedir (dp);
 		    }
 		  else
-		    perror ("Couldn't open the directory");
+		    {
+		    	perror ("Couldn't open the directory");
+		    	logger::log(1,logpath,2,"Could not open directory: ",folder);
+			}
 		fclose(fp);
 	}
 }
@@ -139,11 +144,13 @@ void check_index(char*folder,char*fname)
 	FILE*fp;
 	bool scan;
 	char path[300];
+	logger::log(1,logpath,2,"Checking folder: ",folder);
 	sprintf(path,"c:\\ProgramData\\jakach\\se\\folders\\%s.jdbf",fname);
 	if((fp=fopen(path,"r"))==0)
 	{
 		MessageBox(NULL,"[Jakach_security_engine] FATALE: couldn't open index","ERROR",MB_OK);
 		printf("FATALE ERROR\n");
+		logger::log(2,logpath,2,"Could not open index: ",path);
 	}
 	else
 	{
@@ -179,7 +186,10 @@ void check_index(char*folder,char*fname)
 		      (void) closedir (dp);
 		    }
 		  else
-		    perror ("Couldn't open the directory");
+		    {
+		    	perror ("Couldn't open the directory");
+		    	logger::log(1,logpath,2,"Could not open directory: ",folder);
+			}
 		fclose(fp);
 	}	
 }

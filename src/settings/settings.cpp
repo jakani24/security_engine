@@ -1,7 +1,8 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
- 
+#define logpath "c:\\programdata\\jakach\\se\\logs\\log.jdbf"
+#include "../logger/logger.cpp"
 #include "module_settings.cpp"
 int main()
 {
@@ -13,6 +14,7 @@ int main()
 	{
 		if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","r"))==0)
 		{
+			logger::log(2,logpath,1,"Could not open settingsfile");
 			printf("Error while opening file\n");
 			system("pause");
 			exit(0);
@@ -35,24 +37,28 @@ int main()
 					if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","w"))==0)
 					{
 						printf("Error while opening file\n");
+						logger::log(2,logpath,1,"Could not open settingsfile");
 					}
 					else
 					{
 						fprintf(fp,"%d\n",!abua);
 						fprintf(fp,"%d",ava);
 						fclose(fp);
+						logger::log(4,logpath,2,"Setting: Anti-bad-usb changed to: ", !abua ? "ONLINE" : "OFFLINE");
 					}
 				break;
 				case '1':
 					if((fp=fopen("c:\\ProgramData\\jakach\\se\\settings.jdbf","w"))==0)
 					{
 						printf("Error while opening file\n");
+						logger::log(2,logpath,1,"Could not open settingsfile");
 					}
 					else
 					{
 						fprintf(fp,"%d\n",abua);
 						fprintf(fp,"%d",!ava);
 						fclose(fp);
+						logger::log(4,logpath,2,"Setting: Anti Virus changed to: ", !ava ? "ONLINE" : "OFFLINE");
 					}
 				break;
 				case 'x':
@@ -77,6 +83,7 @@ int main()
 						fclose(fp);
 					}
 					system(buf);
+					logger::log(1,logpath,1,"Restarted all services");
 					printf("done");
 				break;
 			}

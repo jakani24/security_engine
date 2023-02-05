@@ -19,6 +19,8 @@
 #define HWND_MESSAGE     ((HWND)-3)
 #define size_excluded 300
 #define version "1.0.0"
+#include "../logger/logger.cpp"
+#define logpath "c:\\programdata\\jakach\\se\\logs\\log.jdbf"
 char excluded [300][size_excluded]; //list of excluded devices
 char padpath[300];
 LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
@@ -61,6 +63,7 @@ LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
             case DBT_DEVICEARRIVAL:
             	{
                 std::cout << "new device connected: " << path << "\n";
+                logger::log(1,logpath,2,"New device connected: ",path);
 			  //  system("taskkill /f /im padlock.exe");
 			//	system("start c:\\Users\\janis\\Documents\\Projekte_mit_c\\jakach_security_engine\\padlock.exe");
 				FILE*fp;
@@ -70,6 +73,7 @@ LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
 				if((fp=fopen("c:\\ProgramData\\jakach\\se\\excluded.jdbf","r"))==0)
 				{
 					printf("Failed to read file with excluded devices\n");
+					logger::log(2,logpath,1,"Failed to read file with excluded devices");
 				}
 				else
 				{
@@ -87,6 +91,7 @@ LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
 				if(block==true)
 				{
 					printf("Started system lockdown\nPlease ensure all your connected devices are safe and enter your secret key!\n");
+					logger::log(1,logpath,1,"Started system lockdown");
 					INPUT ip;
 				// ...
 				    // Set up a generic keyboard event.
@@ -114,11 +119,13 @@ LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
 				else
 				{
 					printf("This device is trusted\n");
+					logger::log(1,logpath,1,"This device is trusted");
 				}
             break;
         	}
             case DBT_DEVICEREMOVECOMPLETE:
                 std::cout << "device disconnected: " << path << "\n";
+                logger::log(1,logpath,2,"Device disconnected: ",path);
             break;
             }
         }

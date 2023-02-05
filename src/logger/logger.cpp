@@ -39,6 +39,9 @@ namespace logger
 				case 3:
 					fprintf(fp,"WARNING\t\t");
 				break;
+				case 4:
+					fprintf(fp,"SETTING\t\t");
+				break;
 			}
 			for(int i=0;i<num_of_args;i++)
 			{

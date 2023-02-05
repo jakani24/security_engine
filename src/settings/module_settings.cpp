@@ -42,6 +42,7 @@ void av_settings()
 				printf("Please enter the path of the folder: (eg: \"c:\\users\\janis\\downloads\\\")\n");
 				scanf("%395s",&id);
 				fprintf(fp,"%s\n",id);
+				logger::log(4,logpath,2,"Added folder to scan: ",id);
 				printf("Please enter the name of the folder: (eg \"downloads\")\n");
 				scanf("%395s",&id);
 				fprintf(fp,"%s\n",id);
@@ -60,6 +61,7 @@ void av_settings()
 					fprintf(fp,"%s",&id);
 					fclose(fp);
 					printf("done\n");
+					logger::log(4,logpath,1,"Added API token");
 				}
 			}			
 		break;
@@ -73,6 +75,7 @@ void av_settings()
 				fprintf(fp,"%d",max);
 				fclose(fp);
 				printf("done\n");
+				logger::log(4,logpath,1,"Changed attempts before timeout");
 			}			
 		break;
 	}
@@ -93,7 +96,6 @@ void usb_settings()
 			scanf("%295s",&id);
 			if((strcmp(id,"!exit"))!=0)
 			{
-				FILE*fp;
 				if((fp=fopen("c:\\programdata\\jakach\\se\\excluded.jdbf","a"))==0)
 					printf("FATALE ERROR\n");
 				else
@@ -101,6 +103,7 @@ void usb_settings()
 					fprintf(fp,"%s\n",&id);
 					fclose(fp);
 					printf("done\n");
+					logger::log(4,logpath,2,"Added Device to exlusion list: ",id);
 				}
 			}
 		break;
@@ -115,6 +118,7 @@ void usb_settings()
 			{
 				fprintf(fp,"%s",id);
 				fclose(fp);
+				logger::log(4,logpath,2,"Changed path to Padlock.exe: ",id);
 			}
 		break;
 	}
