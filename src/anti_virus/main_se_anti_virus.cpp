@@ -6,8 +6,10 @@
 #define dir "c:\\users\\janis\\downloads\\"
 #define dirname "downloads"
 #define version "1.0.1"
+#define logpath "c:\\programdata\\jakach\\se\\logs\\log.jdbf"
 char api_key[300];
 int max=6;//maximum attempts before timeout
+#include "../logger/logger.cpp"
 #include "scanner/scanner.cpp"
 void update_index(char*,char*);
 void check_index(char*,char*);
@@ -20,6 +22,7 @@ int main(int argc, char* argv[])
 		{
 			max=atoi(argv[4]);
 		}
+		logger::log(1,logpath,2,"Starting scan of individual file: ",argv[2]);
 		scan_file("",argv[2]);
 	}
 	else

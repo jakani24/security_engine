@@ -14,7 +14,7 @@ namespace logger
 		ptr=localtime(&lt);
 		strcpy_s(out,max,asctime(ptr));		
 	}
-	int log(char*path_to_file,int num_of_args,...)
+	int log(int lvl,char*path_to_file,int num_of_args,...)
 	{
 		FILE*fp;
 		va_list list;
@@ -28,6 +28,18 @@ namespace logger
 			get_time(time,295);
 			time[strlen(time)-1]='\0';
 			fprintf(fp,"%s\t",time);
+			switch(lvl)
+			{
+				case 1:
+					fprintf(fp,"INFORMATION\t");
+				break;
+				case 2:
+					fprintf(fp,"ERROR\t\t");
+				break;
+				case 3:
+					fprintf(fp,"WARNING\t\t");
+				break;
+			}
 			for(int i=0;i<num_of_args;i++)
 			{
 				strcpy(buf,va_arg(list,char*));
