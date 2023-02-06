@@ -106,7 +106,7 @@ void update_index(char*folder,char*fname)
 {
 	FILE*fp;
 	char path[300];
-	logger::log(1,logpath,2,"Updating folder: ",folder);
+	//logger::log(1,logpath,2,"Updating folder: ",folder);
 	sprintf(path,"c:\\ProgramData\\jakach\\se\\folders\\%s.jdbf",fname);
 	if((fp=fopen(path,"w"))==0)
 	{
@@ -144,7 +144,7 @@ void check_index(char*folder,char*fname)
 	FILE*fp;
 	bool scan;
 	char path[300];
-	logger::log(1,logpath,2,"Checking folder: ",folder);
+	//logger::log(1,logpath,2,"Checking folder: ",folder);
 	sprintf(path,"c:\\ProgramData\\jakach\\se\\folders\\%s.jdbf",fname);
 	if((fp=fopen(path,"r"))==0)
 	{
