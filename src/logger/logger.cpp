@@ -8,11 +8,12 @@ namespace logger
 {
 	void get_time(char*out,int max)
 	{
-		struct tm*ptr;
-		time_t lt;
-		lt=time(NULL);
-		ptr=localtime(&lt);
-		strcpy_s(out,max,asctime(ptr));		
+		time_t rawtime;
+		struct tm * timeinfo;
+		
+		time (&rawtime);
+		timeinfo = localtime (&rawtime);	
+		strftime (out,max,"%d.%m.%Y %H:%M",timeinfo);	
 	}
 	int log(int lvl,char*path_to_file,int num_of_args,...)
 	{
@@ -53,7 +54,7 @@ namespace logger
 
 		va_start(list,num_of_args);
 		get_time(time,295);
-		time[strlen(time)-1]='\0';
+	//	time[strlen(time)-1]='\0';
 		fprintf(fp,"%s\t",time);
 		switch(lvl)
 		{
@@ -131,7 +132,7 @@ namespace logger
 		fclose(err);		
 		fclose(warn);
 		fclose(set);			
-		
+		return 0;	
 	}
 }
 #endif
