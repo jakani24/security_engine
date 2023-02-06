@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
-#define logpath "c:\\programdata\\jakach\\se\\logs\\log.jdbf"
+#define logpath "c:\\programdata\\jakach\\se\\logs\\"
 #include "../logger/logger.cpp"
 #include "module_settings.cpp"
 int main()

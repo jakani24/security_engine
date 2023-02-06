@@ -6,7 +6,7 @@
 #define dir "c:\\users\\janis\\downloads\\"
 #define dirname "downloads"
 #define version "1.0.1"
-#define logpath "c:\\programdata\\jakach\\se\\logs\\log.jdbf"
+#define logpath "c:\\programdata\\jakach\\se\\logs\\"
 char api_key[300];
 int max=6;//maximum attempts before timeout
 #include "../logger/logger.cpp"

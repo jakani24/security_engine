@@ -20,7 +20,7 @@
 #define size_excluded 300
 #define version "1.0.0"
 #include "../logger/logger.cpp"
-#define logpath "c:\\programdata\\jakach\\se\\logs\\log.jdbf"
+#define logpath "c:\\programdata\\jakach\\se\\logs\\"
 char excluded [300][size_excluded]; //list of excluded devices
 char padpath[300];
 LRESULT message_handler(HWND__* hwnd, UINT uint, WPARAM wparam, LPARAM lparam)
